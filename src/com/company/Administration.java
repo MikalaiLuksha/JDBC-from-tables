@@ -1,10 +1,10 @@
 package com.company;
 
-public class Administration {
+ class Administration {
 
     StorageFromTables storageFromTables = new StorageFromTables();
 
-    public void administration(){
+    private void administration(){
             while (true){
                 Writen.writen("Select");
                 Writen.writen("1 - Find all user / 2 - Remove user / 3 - Update user / 4 - Return");
@@ -17,6 +17,7 @@ public class Administration {
                         break;
                     case 3:
                         updateTables();
+                        break;
                     case 4:
                         return;
                     case -100:

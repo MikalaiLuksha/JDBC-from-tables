@@ -46,8 +46,7 @@ public class StorageFromTables {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1987Roll");
             PreparedStatement preparedStatement = connection.prepareStatement("update usersfromlogin set login = ?, password = ? where id = ?");
             preparedStatement.setInt(3, id);
-            boolean checkId = checkIdTables(id);
-            if(checkId) {
+            if(checkIdTables(id)) {
                 Writen.writen("Enter login");
                 String login3 = Reader.readerString();
                 preparedStatement.setString(1, login3);
@@ -102,18 +101,17 @@ public class StorageFromTables {
             }
         }
 
-    public boolean checkIdTables(int id) {
-        boolean checkId = true;
+    private boolean checkIdTables(int id) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1987Roll");
             PreparedStatement preparedStatement = connection.prepareStatement("select * from usersfromlogin u where u.id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
-                return checkId = true;
+                return true;
             }
             else {
-                return checkId = false;
+                return false;
             }
         }
         catch (SQLException e) {
